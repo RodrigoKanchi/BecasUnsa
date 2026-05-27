@@ -15,15 +15,16 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $adminRole = Role::create(['nombre' => 'admin']);
-        $editorRole = Role::create(['nombre' => 'editor']);
-        $usuarioRole = Role::create(['nombre' => 'usuario']);
+        //$adminRole = Role::create(['nombre' => 'admin']);
+        //$editorRole = Role::create(['nombre' => 'editor']);
+        //$usuarioRole = Role::create(['nombre' => 'usuario']);
 
         $admin = User::create([
             'name' => 'Administrador Becas',
             'email' => 'adminbecas@gmail.com',
             'password' => Hash::make('12345678'), // Recuerda cambiarla luego
-            'role_id' => $adminRole->id,
+            //'role_id' => $adminRole->id,
+            'activo' => true,
             'email_verified_at' => now(),
         ]);
 
@@ -31,7 +32,8 @@ class RoleSeeder extends Seeder
             'name' => 'Editor Becas',
             'email' => 'editorbecas@gmail.com',
             'password' => Hash::make('12345678'), // Recuerda cambiarla luego
-            'role_id' => $editorRole->id,
+            //'role_id' => $editorRole->id,
+            'activo' => true,
             'email_verified_at' => now(),
         ]);
 
@@ -39,7 +41,8 @@ class RoleSeeder extends Seeder
             'name' => 'Usuario Becas',
             'email' => 'usuariobecas@gmail.com',
             'password' => Hash::make('12345678'), // Recuerda cambiarla luego
-            'role_id' => $usuarioRole->id,
+            //'role_id' => $usuarioRole->id,
+            'activo' => true,
             'email_verified_at' => now(),
         ]);
 
