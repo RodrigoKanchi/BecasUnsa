@@ -79,7 +79,7 @@
         <div class="login-field">
           <div class="login-label-row">
             <label class="login-label" for="password">Contraseña</label>
-            <a href="#" class="login-forgot">¿Olvidó su contraseña?</a>
+            <a href="{{ url('/password/reset') }}" class="login-forgot">¿Olvidó su contraseña?</a>
           </div>
           <div class="login-input-wrap">
             <span class="login-input-icon">🔒</span>
