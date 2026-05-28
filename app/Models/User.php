@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password',
         'role_id',   // Campo de tu esquema
         'fcm_token', // Campo para notificaciones en tu esquema
+        'activo'
     ];
 
     /**
@@ -36,6 +37,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'fcm_token', // Oculta el token de notificaciones
     ];
 
     /**

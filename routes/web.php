@@ -26,26 +26,29 @@ Route::middleware('auth')->group(function () {
         })->name('dashboard');
 
     
-    
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    
-    
-    Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+    /*
+    Route::resources('/users', [UserController::class, 'index'])->name('users.index');
     
     
-    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
+    Route::resources('/roles', [RoleController::class, 'index'])->name('roles.index');
     
     
-    Route::get('/becas', [BecaController::class, 'index'])->name('becas.index');
+    Route::resources('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
     
     
-    Route::get('/facultades', [FacultadController::class, 'index'])->name('facultades.index');
+    Route::resources('/becas', [BecaController::class, 'index'])->name('becas.index');
     
     
-    Route::get('/carreras', [CarreraController::class, 'index'])->name('carreras.index');
+    Route::resources('/facultades', [FacultadController::class, 'index'])->name('facultades.index');
     
     
-    Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');
-  
+    Route::resources('/carreras', [CarreraController::class, 'index'])->name('carreras.index');
     
+    
+    Route::resources('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');
+    
+    */
+    
+
 });
+
