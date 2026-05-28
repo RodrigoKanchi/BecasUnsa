@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call(BecaSeeder::class);
 
         $this->call(PermissionSeeder::class);
+
+        $this->call(FacultadSeeder::class);
+
+        $this->call(CarreraSeeder::class);
     }
 }

@@ -60,6 +60,8 @@ class AuthController extends Controller
 
         // 2. Buscar al usuario por email (según ESQUEMA.PNG)
         $user = User::where('email', $request->email)->first();
+        $role = $user->roles()->first();
+        $roleId = $role ? $role->id : null;
 
         // 3. Verificar si existe y si la contraseña coincide
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -77,7 +79,13 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'data'         => $user,
+            'data'         => [
+                'id'       => $user->id,
+                'name'   => $user->name,
+                'email'    => $user->email,
+                'role_id'  => $roleId,
+                'fcm_token' => $user->fcm_token,
+            ],
             'access_token' => $token,
             'token_type'   => 'Bearer',
         ]);
