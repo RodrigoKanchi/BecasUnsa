@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
 
 #[Fillable(['name', 'email', 'password', 'role_id', 'fcm_token'])]
 #[Hidden(['password', 'remember_token'])]
@@ -25,8 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
-        'role_id',   // Campo de tu esquema
+        'password',   // Campo de tu esquema
         'fcm_token', // Campo para notificaciones en tu esquema
         'activo'
     ];
@@ -43,8 +43,10 @@ class User extends Authenticatable
     /**
      * Relación con la tabla Roles (ESQUEMA.PNG).
      */
+
+    //A reparar
     public function role()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id');
     }
 }

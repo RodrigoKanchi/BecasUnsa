@@ -56,7 +56,7 @@
 
       <h2 class="login-title">Iniciar Sesión</h2>
 
-      <form class="login-form" id="loginForm" onsubmit="{{route('login')}}" novalidate>
+      <form class="login-form" method="POST" id="loginForm" onsubmit="{{route('login')}}" novalidate>
 
         <!-- Correo -->
         <div class="login-field">

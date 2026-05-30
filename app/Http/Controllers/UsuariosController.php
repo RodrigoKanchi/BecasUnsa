@@ -9,7 +9,13 @@ class UsuariosController extends Controller
 {
     public function index(){
         $usuarios = User::all();
-        return view('usuarios.index', compact('usuarios'));
+        $activos = User::where('activo', true)->count();
+        $inactivos = User::where('activo', false)->count();
+        $cantAdmin = $usuarios->filter(function($user) {
+            return $user->hasRole('Administrador');
+        })->count();
+        $cantUser = User::all()->count();
+        return view('usuarios.index', compact('usuarios', 'activos', 'inactivos', 'cantAdmin', 'cantUser'));
     }
 
     public function create(){
