@@ -7,11 +7,13 @@
             <h1 class="adm-page-title">Usuarios</h1>
             <p class="adm-page-subtitle">Gestione los usuarios del sistema institucional</p>
           </div>
-          <button class="adm-btn primary">+ Nuevo Usuario</button>
+          <a class="adm-btn primary" href="{{ route('usuarios.create') }}">+ Nuevo Usuario</a>
         </div>
 
         @include('usuarios.info')
         @include('usuarios.table')
-
+        <div class="mt-4">
+            {{ $usuarios->links() }}
+        </div>
 </section>
 @endsection

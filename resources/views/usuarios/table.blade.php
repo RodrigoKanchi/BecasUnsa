@@ -33,9 +33,9 @@
                 <td><span class="adm-status">{{ $usuario->activo ? 'Si' : 'No' }}</span></td>
                 <td>
                   <div class="adm-actions">
-                    <button class="adm-action-btn" title="Editar">✏️</button>
-                    <button class="adm-action-btn" title="Ver">👁️</button>
-                    <button class="adm-action-btn danger" title="Eliminar">🗑️</button>
+                    <a class="adm-action-btn" title="Editar" href="{{ route('usuarios.edit', $usuario->id) }}">✏️</a>
+                    <a class="adm-action-btn" title="Ver" href="{{ route('usuarios.show', $usuario->id) }}">👁️</a>
+                    <a class="adm-action-btn danger" title="Eliminar" href="{{ route('usuarios.destroy', $usuario->id) }}" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que deseas eliminar este usuario?')) { document.getElementById('delete-form-{{ $usuario->id }}').submit(); }">🗑️</a>
                   </div>
                 </td>
               </tr>

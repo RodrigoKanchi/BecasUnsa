@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Beca;
 
 
 //BACKEND
@@ -10,7 +11,8 @@ class BecasController extends Controller
 {
     public function index()
     {
-        return view('becas.index');
+        $becas = Beca::paginate(6);
+        return view('becas.index',compact('becas'));
     }
 
     public function create(){
@@ -18,7 +20,8 @@ class BecasController extends Controller
     }
 
     public function edit($id){
-        return view('becas.edit', compact('id'));
+        $beca = Beca::findOrFail($id);
+        return view('becas.edit', compact('beca'));
     }
 
     public function store(Request $request){
@@ -56,7 +59,9 @@ class BecasController extends Controller
 
     public function show($id){
         $beca = Beca::findOrFail($id);
-        return view('becas.show', compact('beca'));
+        $carreras = $beca->carreras();
+        //dd($carreras);
+        return view('becas.show', compact('beca','carreras'));
     }
 
     public function desactivate($id){

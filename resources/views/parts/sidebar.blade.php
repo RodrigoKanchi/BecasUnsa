@@ -15,30 +15,30 @@
       </a>
 
       <!-- Grupo: Gestión de Acceso -->
-      <a class="adm-nav-item" id="nav-usuarios" href="{{route('usuarios')}}">
+      <a class="adm-nav-item" id="nav-usuarios" href="{{route('usuarios.index')}}">
         <span class="adm-nav-label">Usuarios</span>
       </a>
-      <a class="adm-nav-item" id="nav-roles" href="{{route('roles')}}">
+      <a class="adm-nav-item" id="nav-roles" href="{{route('roles.index')}}">
         <span class="adm-nav-label">Roles</span>
       </a>
-     <a class="adm-nav-item" id="nav-permisos" href="{{route('permisos')}}">
+     <a class="adm-nav-item" id="nav-permisos" href="{{route('permisos.index')}}">
         <span class="adm-nav-label">Permisos</span>
       </a>
 
 
-      <a class="adm-nav-item" id="nav-becas" href="{{route('becas')}}">
+      <a class="adm-nav-item" id="nav-becas" href="{{route('becas.index')}}">
         <span class="adm-nav-label">Becas</span>
       </a>
       
-      <a class="adm-nav-item" id="nav-facultades" href="{{route('facultades')}}">
+      <a class="adm-nav-item" id="nav-facultades" href="{{route('facultades.index')}}">
         <span class="adm-nav-label">Facultades</span>
       </a>
 
-      <a class="adm-nav-item" id="nav-carreras" href="{{route('carreras')}}">
+      <a class="adm-nav-item" id="nav-carreras" href="{{route('carreras.index')}}">
         <span class="adm-nav-label">Carreras</span>
       </a>
 
-      <a class="adm-nav-item" id="nav-categorias" href="{{route('categorias')}}">
+      <a class="adm-nav-item" id="nav-categorias" href="{{route('categorias.index')}}">
         <span class="adm-nav-label">Categorias</span>
       </a>
 
@@ -46,5 +46,4 @@
 
     </nav>
 
-    <button class="adm-sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">◀</button>
 </aside>

@@ -8,7 +8,7 @@ use App\Models\Carrera;
 class CarrerasController extends Controller
 {
     public function index(){
-        $carreras = Carrera::all();
+        $carreras = Carrera::paginate(6);
         return view('carreras.index', compact('carreras'));
     }
 

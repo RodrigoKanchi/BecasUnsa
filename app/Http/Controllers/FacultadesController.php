@@ -8,7 +8,7 @@ use App\Models\Facultad;
 class FacultadesController extends Controller
 {
     public function index(){
-        $facultades = Facultad::all();
+        $facultades = Facultad::paginate(6);
         return view('facultades.index', compact('facultades'));
     }
 

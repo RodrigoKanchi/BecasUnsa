@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role;
 class RolesController extends Controller
 {
     public function index(){
-        $roles = Role::all();
+        $roles = Role::paginate(10);
         return view('roles.index', compact('roles'));
     }
 
@@ -42,7 +42,8 @@ class RolesController extends Controller
 
     public function show($id){
         $rol = Role::findOrFail($id);
-        return view('roles.show', compact('rol'));
+        $permisos = $rol->permissions->pluck('name');
+        return view('roles.show', compact('rol', 'permisos'));
     }
 
     public function destroy($id){

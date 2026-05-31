@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class UsuariosController extends Controller
 {
     public function index(){
-        $usuarios = User::all();
+        $usuarios = User::paginate(10);
         $activos = User::where('activo', true)->count();
         $inactivos = User::where('activo', false)->count();
         $cantAdmin = $usuarios->filter(function($user) {
@@ -19,12 +20,14 @@ class UsuariosController extends Controller
     }
 
     public function create(){
-        return view('usuarios.create');
+        $roles = Role::all();
+        return view('usuarios.create', compact('roles'));
     }
 
     public function edit($id){
         $usuario = User::findOrFail($id);
-        return view('usuarios.edit', compact('usuario'));
+        $roles = Role::all();
+        return view('usuarios.edit', compact('usuario', 'roles'));
     }
 
     public function store(Request $request){

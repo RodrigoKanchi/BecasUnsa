@@ -6,15 +6,10 @@
       </div>
 
       <div class="adm-topbar-actions">
-        <button class="adm-topbar-icon-btn" title="Notificaciones">
-          🔔
-          <span class="adm-badge">3</span>
-        </button>
 
         <!-- User menu -->
         <div class="adm-user-menu-wrapper">
           <button class="adm-user-btn dropdown-toggle" id="userBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="adm-avatar">JD</div>
             <div class="adm-user-info">
               <span class="adm-user-name">{{Auth::user()->name}}</span>
               <span class="adm-user-role"> @foreach(Auth::user()->roles as $role) {{ $role->name }} @endforeach </span>
