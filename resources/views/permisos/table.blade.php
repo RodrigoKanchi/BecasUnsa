@@ -25,7 +25,11 @@
                   <div class="adm-actions">
                     <a class="adm-action-btn" title="Editar" href="{{ route('permisos.edit', $permiso->id) }}">✏️</a>
                     <a class="adm-action-btn" title="Ver" href="{{ route('permisos.show', $permiso->id) }}">👁️</a>
-                    <a class="adm-action-btn danger" title="Eliminar" href="{{ route('permisos.destroy', $permiso->id) }}" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que deseas eliminar este permiso?')) { document.getElementById('delete-form-{{ $permiso->id }}').submit(); }">🗑️</a>
+                    <form id="delete-form-{{ $permiso->id }}" action="{{ route('permisos.destroy', $permiso->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <a type="submit" class="adm-action-btn danger" title="Eliminar" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que deseas eliminar este permiso?')) { document.getElementById('delete-form-{{ $permiso->id }}').submit(); }">🗑️</a>
+                    </form>
                   </div>
                 </td>
               </tr>

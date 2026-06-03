@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Beca;
+use App\Models\Categoria;
 
 
 //BACKEND
@@ -16,7 +17,8 @@ class BecasController extends Controller
     }
 
     public function create(){
-        return view('becas.create');
+        $categorias = Categoria::all();
+        return view('becas.create', compact('categorias'));
     }
 
     public function edit($id){
@@ -26,13 +28,14 @@ class BecasController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'requisitos' => 'required',
-            'beneficios' => 'required',
-            'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
-            'activo' => 'required|boolean'
+            'titulo' => 'required',
+            'descripcion' => 'string',
+            'categoria' => 'required|exists:categoria,id',
+            'contacto' => 'required',
+            'fecha_inscripcion' => 'required|date',
+            'fecha_limite' => 'required|date|after_or_equal:fecha_inicio',
+            'activo' => 'required|boolean',
+            'resolucion' => 'required'
         ]);
 
         $beca = Beca::create($request->all());
@@ -42,13 +45,14 @@ class BecasController extends Controller
 
     public function update(Request $request, $id){
         $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'requisitos' => 'required',
-            'beneficios' => 'required',
-            'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
-            'activo' => 'required|boolean'
+            'titulo' => 'required',
+            'descripcion' => 'string',
+            'categoria' => 'required|exists:categoria,id',
+            'contacto' => 'required',
+            'fecha_inscripcion' => 'required|date',
+            'fecha_limite' => 'required|date|after_or_equal:fecha_inicio',
+            'activo' => 'required|boolean',
+            'resolucion' => 'required'
         ]);
 
         $beca = Beca::findOrFail($id);

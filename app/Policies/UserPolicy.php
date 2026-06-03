@@ -7,14 +7,16 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
+    use HandlesAuthorization;
     /**
      * Create a new policy instance.
      */
     public function __construct()
-    {
-        use HandlesAuthorization;
+    {   
+        // 
+    }
 
-        public function view(User $user)
+      public function view(User $user)
         {
             return $user->can('verUsuarios');
         }
@@ -33,6 +35,4 @@ class UserPolicy
         {
             return $user->can('eliminarUsuarios');
         }
-
-    }
 }

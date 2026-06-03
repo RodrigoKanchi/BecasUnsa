@@ -21,7 +21,7 @@
         <button class="ev-alert-close" onclick="document.getElementById('alertOk').style.display='none'">✕</button>
       </div>
 
-      <form id="createForm" method="POST" action="{{ route('permisos.store') }}" novalidate>
+      <form id="createForm" method="POST" action="{{ route('permisos.store') }}">
         @csrf
         <div class="ev-form-layout">
 
@@ -29,10 +29,9 @@
           <div class="ev-form-main">
 
             <div class="ev-section">Informacion Permiso</div>
-
             <div class="ev-field">
               <label class="ev-label">Nombre <span class="ev-req">*</span></label>
-              <input class="ev-input" name="nombre" id="f-nombre" type="text" />
+              <input class="ev-input" name="name" id="f-nombre" type="text" />
               <span class="ev-field-err" id="e-nombre"></span>
             </div>
 
@@ -43,7 +42,7 @@
         <div class="ev-footer">
           <a type="button" class="adm-btn ghost" href="{{ route('permisos.index') }}">Cancelar</a>
           <div class="ev-footer-right">
-            <button type="submit" class="adm-btn primary" id="submitBtn">Crear Usuario</button>
+            <button type="submit" class="adm-btn primary" id="submitBtn">Crear Permiso</button>
           </div>
         </div>
       </form>

@@ -37,7 +37,15 @@
             </div>
 
             <!-- Agregar para seleccionar permisos -->
-
+             <div>
+              <label class="ev-section">Permisos</label>
+              <br>
+              @foreach($permisos as $permiso)
+              <label class="ev-label"> {{ $permiso->name }} </label>
+              <input name="permisos" id="f-nombre" type="checkbox" value="{{ $permiso->id }}" />
+              <br>
+              @endforeach
+            </div>
 
         <!-- FOOTER -->
         <div class="ev-footer">

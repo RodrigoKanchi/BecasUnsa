@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Carrera;
+use App\Models\Facultad;
 
 class CarrerasController extends Controller
 {
     public function index(){
-        $carreras = Carrera::paginate(6);
+        $carreras = Carrera::paginate(10);
         return view('carreras.index', compact('carreras'));
     }
 

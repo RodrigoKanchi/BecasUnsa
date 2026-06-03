@@ -27,7 +27,11 @@
                   <div class="adm-actions">
                     <a class="adm-action-btn" title="Editar" href="{{ route('carreras.edit', $carrera->id) }}">✏️</a>
                     <a class="adm-action-btn" title="Ver" href="{{ route('carreras.show', $carrera->id) }}">👁️</a>
-                    <a class="adm-action-btn danger" title="Eliminar" href="{{ route('carreras.destroy', $carrera->id) }}" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que deseas eliminar este carrera?')) { document.getElementById('delete-form-{{ $carrera->id }}').submit(); }">🗑️</a>
+                    <form id="delete-form-{{ $carrera->id }}" action="{{ route('carreras.destroy', $carrera->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <a type="submit" class="adm-action-btn danger" title="Eliminar" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que deseas eliminar esta carrera?')) { document.getElementById('delete-form-{{ $carrera->id }}').submit(); }">🗑️</a>
+                    </form>
                   </div>
                 </td>
               </tr>

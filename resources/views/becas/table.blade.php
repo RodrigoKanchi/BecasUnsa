@@ -37,7 +37,11 @@
                   <div class="adm-actions">
                     <a class="adm-action-btn" title="Editar" href="{{ route('becas.edit', $beca->id) }}">✏️</a>
                     <a class="adm-action-btn" title="Ver" href="{{ route('becas.show', $beca->id) }}">👁️</a>
-                    <a class="adm-action-btn danger" title="Eliminar" href="{{ route('becas.destroy', $beca->id) }}" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que deseas eliminar este beca?')) { document.getElementById('delete-form-{{ $beca->id }}').submit(); }">🗑️</a>
+                    <form id="delete-form-{{ $beca->id }}" action="{{ route('becas.destroy', $beca->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <a type="submit" class="adm-action-btn danger" title="Eliminar" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que deseas eliminar esta beca?')) { document.getElementById('delete-form-{{ $beca->id }}').submit(); }">🗑️</a>
+                    </form>
                   </div>
                 </td>
               </tr>

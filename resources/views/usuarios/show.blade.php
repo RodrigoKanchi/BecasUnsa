@@ -12,7 +12,6 @@
         </div>
         <div class="ev-show-actions">
           <a class="adm-btn outline" href="{{ route('usuarios.edit', [ 'usuario' => $usuario->id ] ) }}">✏️ Editar</a>
-          <a class="adm-btn primary">🔑 Gestionar permisos</a>
         </div>
       </div>
 

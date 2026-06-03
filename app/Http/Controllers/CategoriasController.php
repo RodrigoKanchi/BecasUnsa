@@ -8,7 +8,7 @@ use App\Models\Categoria;
 class CategoriasController extends Controller
 {
     public function index(){
-        $categorias = Categoria::paginate(6);
+        $categorias = Categoria::paginate(10);
         return view('categorias.index', compact('categorias'));
     }
 
@@ -23,17 +23,16 @@ class CategoriasController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'nombre' => 'required',
+            'nombre' => 'required|unique:categorias,nombre',
             'activo' => 'required|boolean'
-        ]);
-
+        ]);        
         Categoria::create($request->all());
         return redirect()->route('categorias.index')->with('success', 'Categoría creada exitosamente.');
     }
 
     public function update(Request $request, $id){
         $request->validate([
-            'nombre' => 'required',
+            'nombre' => 'required|unique:categorias,nombre',
             'activo' => 'required|boolean'
         ]);
 

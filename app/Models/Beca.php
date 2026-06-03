@@ -29,6 +29,10 @@ class Beca extends Model
 
 
     public function carreras(){
-        return $this->belongsToMany(Carrera::class,'beca_carrera','beca_id','carrera_id')->whereNotNull('carreras.id');
+        return $this->belongsToMany(Carrera::class,'beca_carrera','beca_id','carrera_id');
+    }
+
+    public function facultades(){
+        return $this->belongsToMany(Facultad::class,'beca_facultad','beca_id','facultad_id');
     }
 }

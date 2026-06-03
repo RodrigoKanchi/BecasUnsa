@@ -25,7 +25,11 @@
                   <div class="adm-actions">
                     <a class="adm-action-btn" title="Editar" href="{{ route('roles.edit', $rol->id) }}">✏️</a>
                     <a class="adm-action-btn" title="Ver" href="{{ route('roles.show', $rol->id) }}">👁️</a>
-                    <a class="adm-action-btn danger" title="Eliminar" href="{{ route('roles.destroy', $rol->id) }}" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que deseas eliminar este rol?')) { document.getElementById('delete-form-{{ $rol->id }}').submit(); }">🗑️</a>
+                    <form id="delete-form-{{ $rol->id }}" action="{{ route('roles.destroy', $rol->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <a type="submit" class="adm-action-btn danger" title="Eliminar" onclick="event.preventDefault(); if(confirm('¿Estás seguro de que deseas eliminar este rol?')) { document.getElementById('delete-form-{{ $rol->id }}').submit(); }">🗑️</a>
+                    </form>
                   </div>
                 </td>
               </tr>

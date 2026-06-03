@@ -23,6 +23,7 @@
 
       <form id="editForm" method="POST" action="{{route( 'facultades.update' , [ 'facultad' => $facultad->id ] )}} " >
         @csrf
+        @method('PUT')
         <div class="ev-form-layout">
           <div class="ev-form-main">
 
@@ -34,9 +35,9 @@
 
             <div class="ev-field">
               <label class="ev-label">Estado</label>
-              <select class="ev-select" name="estado" id="f-estado" onchange="onStatusChange()">
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
+              <select class="ev-select" name="activo" id="f-estado" onchange="onStatusChange()">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
               </select>
             </div>
 

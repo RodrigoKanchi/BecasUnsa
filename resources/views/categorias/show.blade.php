@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="ev-show-actions">
-          <a class="adm-btn outline" href="{{ route('categorias.edit', [ 'categoria' => $categoria->id ] ) }}">✏️ Editar</a>
+          <a class="adm-btn outline" href="{{ route('categorias.edit', [ 'id' => $categoria->id ] ) }}">✏️ Editar</a>
         </div>
       </div>
 

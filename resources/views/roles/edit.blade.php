@@ -23,6 +23,7 @@
 
       <form id="editForm" method="POST" action="{{route( 'roles.update' , [ 'role' => $rol->id ] )}} " >
         @csrf
+        @method('PUT')
         <div class="ev-form-layout">
           <div class="ev-form-main">
 
@@ -32,7 +33,23 @@
               <span class="ev-field-err" id="e-nombre"></span>
             </div>
 
+            <div>
+              <label class="ev-section">Permisos</label>
+              <br>
+              @foreach($permisos as $permiso)
+              <label class="ev-label"> {{ $permiso->name }} </label>
+              @if($rol->hasPermissionTo($permiso->name))
+              <input name="permisos" id="f-nombre" type="checkbox" value="{{ $permiso->id }}" checked />
+              @else
+              <input name="permisos" id="f-nombre" type="checkbox" value="{{ $permiso->id }}"/>
+              @endif
+              <br>
+              @endforeach
+            </div>
+
           </div>
+
+
 
         </div>
 

@@ -32,12 +32,22 @@
 
             <div class="ev-field">
               <label class="ev-label">Titulo <span class="ev-req">*</span></label>
-              <input class="ev-input" name="titulo" id="f-nombre" type="text" placeholder="Ingrese un titulo" oninput="clearErr('nombre')" />
+              <input class="ev-input" name="titulo" id="f-nombre" type="text" placeholder="Ingrese un titulo" />
               <span class="ev-field-err" id="e-nombre"></span>
             </div>
             <div class="ev-field">
+              <label class="ev-label">Categoria <span class="ev-req">*</span></label>
+              <select class="ev-select" name="categoria" id="f-categoria" >
+                <option value="" noselect>— Seleccionar —</option>
+                @foreach($categorias as $categoria)
+                  <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                @endforeach
+              </select>
+              <span class="ev-field-err" id="e-rol"></span>
+            </div>
+            <div class="ev-field">
               <label class="ev-label">Correo Contacto <span class="ev-req">*</span></label>
-              <input class="ev-input" name="contacto" id="f-email" type="email" placeholder="usuario@institucion.edu" oninput="clearErr('email')" />
+              <input class="ev-input" name="contacto" id="f-email" type="email" placeholder="usuario@institucion.edu" />
               <span class="ev-field-err" id="e-email"></span>
             </div>
             <div class="ev-field">
@@ -55,15 +65,15 @@
             </div>
             <div class="ev-field">
               <label class="ev-label">Estado</label>
-              <select class="ev-select" name="estado" id="f-estado">
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
+              <select class="ev-select" name="activo" id="f-estado">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
               </select>
             </div>
             <div class="ev-field">
               <label class="ev-label">Descripcion</label>
               <textarea class="ev-textarea" name="descripcion" rows="3" id="f-desc" placeholder="Ingrese una descripcion"> </textarea>
-              <span class="ev-field-err" id="e-nombre"></span>
+              <span class="ev-field-err" id="e-desc"></span>
             </div>
 
 

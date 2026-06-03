@@ -21,14 +21,15 @@
         <button class="ev-alert-close" onclick="document.getElementById('alertOk').style.display='none'">✕</button>
       </div>
 
-      <form id="editForm" method="POST" action="{{route( 'permisos.update' , [ 'permiso' => $permiso->id ] )}} " >
+      <form id="editForm" method="POST" action="{{route( 'permisos.update' , [ 'id' => $permiso->id ] )}}" >
         @csrf
+        @method('PUT')
         <div class="ev-form-layout">
           <div class="ev-form-main">
 
             <div class="ev-field">
               <label class="ev-label">Nombre <span class="ev-req">*</span></label>
-              <input class="ev-input" name="nombre" id="f-nombre" type="text" value="{{ $permiso->name }}" />
+              <input class="ev-input" name="name" id="f-nombre" type="text" value="{{ $permiso->name }}" />
               <span class="ev-field-err" id="e-nombre"></span>
             </div>
 

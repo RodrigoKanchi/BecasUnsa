@@ -17,11 +17,11 @@
 
       <!-- Alert -->
       <div class="ev-alert success" id="alertOk" style="display:none">
-        ✅ Facultad creado exitosamente.
+        ✅ Categoria creada exitosamente.
         <button class="ev-alert-close" onclick="document.getElementById('alertOk').style.display='none'">✕</button>
       </div>
 
-      <form id="createForm" method="POST" action="{{ route('categorias.store') }}" novalidate>
+      <form id="createForm" method="POST" action="{{ route('categorias.store') }}">
         @csrf
         <div class="ev-form-layout">
 
@@ -38,9 +38,9 @@
 
             <div class="ev-field">
               <label class="ev-label">Estado</label>
-              <select class="ev-select" name="estado" id="f-estado">
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
+              <select class="ev-select" name="activo" id="f-estado">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
               </select>
             </div>
 

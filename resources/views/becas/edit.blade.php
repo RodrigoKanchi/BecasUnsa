@@ -21,8 +21,9 @@
         <button class="ev-alert-close" onclick="document.getElementById('alertOk').style.display='none'">✕</button>
       </div>
 
-      <form id="editForm" method="POST" action="{{route('becas.update' , ['beca' => $beca->id ])}} " >
+      <form id="editForm" method="POST" action="{{route('becas.update' , ['id' => $beca->id ])}} " >
         @csrf
+        @method('PUT')
         <div class="ev-form-layout">
           <div class="ev-form-main">
 
@@ -54,15 +55,15 @@
             </div>
             <div class="ev-field">
               <label class="ev-label">Estado</label>
-              <select class="ev-select" name="estado" id="f-estado">
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
+              <select class="ev-select" name="activo" id="f-estado">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
               </select>
             </div>
             <div class="ev-field">
               <label class="ev-label">Descripcion</label>
               <textarea class="ev-textarea" name="descripcion" rows="3" id="f-desc" placeholder="Ingrese una descripcion" value="{{ $beca->descripcion }}"> </textarea>
-              <span class="ev-field-err" id="e-nombre"></span>
+              <span class="ev-field-err" id="e-desc"></span>
             </div>
 
           </div>

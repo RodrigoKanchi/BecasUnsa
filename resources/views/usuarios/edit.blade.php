@@ -23,6 +23,7 @@
 
       <form id="editForm" method="POST" action="{{route('usuarios.update' , ['usuario' => $usuario->id ])}} " >
         @csrf
+        @method('PUT')
         <div class="ev-form-layout">
           <div class="ev-form-main">
 
