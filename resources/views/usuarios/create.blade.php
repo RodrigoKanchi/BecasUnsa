@@ -32,7 +32,7 @@
 
             <div class="ev-field">
               <label class="ev-label">Nombre <span class="ev-req">*</span></label>
-              <input class="ev-input" name="nombre" id="f-nombre" type="text" placeholder="Ej: María García" oninput="clearErr('nombre')" />
+              <input class="ev-input" name="name" id="f-nombre" type="text" placeholder="Ej: María García" oninput="clearErr('nombre')" />
               <span class="ev-field-err" id="e-nombre"></span>
             </div>
             <div class="ev-field">
@@ -58,9 +58,9 @@
             </div>
             <div class="ev-field">
               <label class="ev-label">Estado</label>
-              <select class="ev-select" name="estado" id="f-estado">
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
+              <select class="ev-select" name="activo" id="f-estado">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
               </select>
             </div>
 

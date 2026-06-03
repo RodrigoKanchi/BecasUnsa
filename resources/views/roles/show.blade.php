@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="ev-show-actions">
-          <a class="adm-btn outline" href="{{ route('roles.edit', [ 'role' => $rol->id ] ) }}">✏️ Editar</a>
+          <a class="adm-btn outline" href="{{ route('roles.edit', [ 'id' => $rol->id ] ) }}">✏️ Editar</a>
         </div>
       </div>
 

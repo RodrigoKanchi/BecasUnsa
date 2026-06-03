@@ -32,7 +32,7 @@
 
             <div class="ev-field">
               <label class="ev-label">Nombre <span class="ev-req">*</span></label>
-              <input class="ev-input" name="nombre" id="f-nombre" type="text" />
+              <input class="ev-input" name="name" id="f-nombre" type="text" />
               <span class="ev-field-err" id="e-nombre"></span>
             </div>
 
@@ -42,7 +42,7 @@
               <br>
               @foreach($permisos as $permiso)
               <label class="ev-label"> {{ $permiso->name }} </label>
-              <input name="permisos" id="f-nombre" type="checkbox" value="{{ $permiso->id }}" />
+              <input name="permissions[]" id="f-nombre" type="checkbox" value="{{ $permiso->name }}" />
               <br>
               @endforeach
             </div>
@@ -51,7 +51,7 @@
         <div class="ev-footer">
           <a type="button" class="adm-btn ghost" href="{{ route('roles.index') }}">Cancelar</a>
           <div class="ev-footer-right">
-            <button type="submit" class="adm-btn primary" id="submitBtn">Crear Usuario</button>
+            <button type="submit" class="adm-btn primary" id="submitBtn">Crear Rol</button>
           </div>
         </div>
       </form>

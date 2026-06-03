@@ -35,10 +35,10 @@
 
             <div class="ev-field">
               <label class="ev-label">Facultad <span class="ev-req">*</span></label>
-              <select class="ev-select" name="facultad" id="f-facultad">
+              <select class="ev-select" name="facultad_id" id="f-facultad">
                 <option value="" noselect>— Seleccionar —</option>
                 @foreach($facultades as $facultad)
-                  @if($carrera->facultad == $facultad->id)
+                  @if($carrera->facultad_id == $facultad->id)
                   <option value="{{ $facultad->id }}" selected>{{ $facultad->nombre }}</option>
                   @else
                     <option value="{{ $facultad->id }}">{{ $facultad->nombre }}</option>

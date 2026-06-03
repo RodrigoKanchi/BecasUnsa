@@ -21,7 +21,7 @@
         <button class="ev-alert-close" onclick="document.getElementById('alertOk').style.display='none'">✕</button>
       </div>
 
-      <form id="editForm" method="POST" action="{{route( 'facultades.update' , [ 'facultad' => $facultad->id ] )}} " >
+      <form id="editForm" method="POST" action="{{route( 'facultades.update' , [ 'id' => $facultad->id ] )}} " >
         @csrf
         @method('PUT')
         <div class="ev-form-layout">

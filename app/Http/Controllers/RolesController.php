@@ -28,8 +28,9 @@ class RolesController extends Controller
         $request->validate([
             'name' => 'required|unique:roles,name',
         ]);
-
-        Role::create($request->all());
+        $rol = Role::create($request->all());
+        $permisos = $request->input('permissions', []);
+        $rol->givePermissionTo($permisos);
         return redirect()->route('roles.index')->with('success', 'Rol creado exitosamente.');
     }
 
@@ -40,6 +41,8 @@ class RolesController extends Controller
 
         $rol = Role::findOrFail($id);
         $rol->update($request->all());
+        $permisos = $request->input('permissions', []);
+        $rol->syncPermissions($permisos);
         return redirect()->route('roles.index')->with('success', 'Rol actualizado exitosamente.');
     }
 

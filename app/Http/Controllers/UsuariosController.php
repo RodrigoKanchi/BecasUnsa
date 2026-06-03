@@ -37,7 +37,9 @@ class UsuariosController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        User::create($request->all());
+        $nuevo = User::create($request->all());
+        $nuevo->assignRole($request->input('rol'));
+
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
     }
 
@@ -53,7 +55,11 @@ class UsuariosController extends Controller
         if(empty($data['password'])){
             unset($data['password']);
         }
+        if(!empty($data['rol'])){
+            $usuario->syncRoles($data['rol']);
+        }
         $usuario->update($data);
+
         return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
     }
 

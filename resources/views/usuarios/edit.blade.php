@@ -21,7 +21,7 @@
         <button class="ev-alert-close" onclick="document.getElementById('alertOk').style.display='none'">✕</button>
       </div>
 
-      <form id="editForm" method="POST" action="{{route('usuarios.update' , ['usuario' => $usuario->id ])}} " >
+      <form id="editForm" method="POST" action="{{route('usuarios.update' , ['id' => $usuario->id ])}} " >
         @csrf
         @method('PUT')
         <div class="ev-form-layout">
@@ -31,7 +31,7 @@
 
             <div class="ev-field">
               <label class="ev-label">Nombre <span class="ev-req">*</span></label>
-              <input class="ev-input" name="nombre" id="f-nombre" type="text" value="{{ $usuario->name }}" />
+              <input class="ev-input" name="name" id="f-nombre" type="text" value="{{ $usuario->name }}" />
               <span class="ev-field-err" id="e-nombre"></span>
             </div>
 
@@ -49,8 +49,8 @@
               <label class="ev-label">Rol <span class="ev-req">*</span></label>
               <select class="ev-select" name="rol" id="f-rol" onchange="onRolChange()">
                 @foreach($roles as $role)
-                    <option value="{{ $role->name }}"
-                    @selected($role->name == $usuario->role->first()->name)>
+                    <option value="{{ $role->name }}" {{ $usuario->hasRole($role->name) ? 'selected' : '' }}>
+                    
                     {{ $role->name }}
                     </option>
                 @endforeach
@@ -59,9 +59,9 @@
             </div>
             <div class="ev-field">
               <label class="ev-label">Estado</label>
-              <select class="ev-select" name="estado" id="f-estado" onchange="onStatusChange()">
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
+              <select class="ev-select" name="activo" id="f-estado" onchange="onStatusChange()">
+                <option value="1" {{ $usuario->activo ? 'selected' : '' }}>Activo</option>
+                <option value="0" {{ !$usuario->activo ? 'selected' : '' }}>Inactivo</option>
               </select>
             </div>
 

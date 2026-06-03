@@ -21,7 +21,7 @@
         <button class="ev-alert-close" onclick="document.getElementById('alertOk').style.display='none'">✕</button>
       </div>
 
-      <form id="editForm" method="POST" action="{{route( 'roles.update' , [ 'role' => $rol->id ] )}} " >
+      <form id="editForm" method="POST" action="{{route( 'roles.update' , [ 'id' => $rol->id ] )}} " >
         @csrf
         @method('PUT')
         <div class="ev-form-layout">
@@ -29,7 +29,7 @@
 
             <div class="ev-field">
               <label class="ev-label">Nombre <span class="ev-req">*</span></label>
-              <input class="ev-input" name="nombre" id="f-nombre" type="text" value="{{ $rol->name }}" />
+              <input class="ev-input" name="name" id="f-nombre" type="text" value="{{ $rol->name }}" />
               <span class="ev-field-err" id="e-nombre"></span>
             </div>
 
@@ -39,9 +39,9 @@
               @foreach($permisos as $permiso)
               <label class="ev-label"> {{ $permiso->name }} </label>
               @if($rol->hasPermissionTo($permiso->name))
-              <input name="permisos" id="f-nombre" type="checkbox" value="{{ $permiso->id }}" checked />
+              <input name="permissions[]" id="f-nombre" type="checkbox" value="{{ $permiso->name }}" checked />
               @else
-              <input name="permisos" id="f-nombre" type="checkbox" value="{{ $permiso->id }}"/>
+              <input name="permissions[]" id="f-nombre" type="checkbox" value="{{ $permiso->name }}"/>
               @endif
               <br>
               @endforeach

@@ -23,7 +23,7 @@ class CategoriasController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'nombre' => 'required|unique:categorias,nombre',
+            'nombre' => 'required',
             'activo' => 'required|boolean'
         ]);        
         Categoria::create($request->all());
@@ -31,8 +31,9 @@ class CategoriasController extends Controller
     }
 
     public function update(Request $request, $id){
+        //dd($request->all(),$id);
         $request->validate([
-            'nombre' => 'required|unique:categorias,nombre',
+            'nombre' => 'required',
             'activo' => 'required|boolean'
         ]);
 
