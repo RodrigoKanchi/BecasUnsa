@@ -1,7 +1,13 @@
 
 <div class="adm-card">
           <div class="adm-card-toolbar">
-            <input class="adm-search" id="userSearch" placeholder="Buscar beca..." oninput="filterUsers()" />
+            <form action="{{ route('becas.buscar') }}" method="GET">
+              @csrf
+            <input class="adm-search" name="nombre" id="userSearch" placeholder="Buscar beca..." />
+            <input class="adm-search" name="facultad" id="facultadSearch" placeholder="Buscar por facultad..." />
+            <input class="adm-search" name="carrera" id="carreraSearch" placeholder="Buscar por carrera..." />
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
             <div class="adm-toolbar-right">
               <button class="adm-btn ghost">Exportar</button>
               <button class="adm-btn ghost">Filtrar</button>

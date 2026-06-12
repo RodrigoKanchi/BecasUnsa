@@ -16,6 +16,40 @@ class BecaController extends Controller
     }
 
     // Funciones para buscar(nombre, facultad?, carrera?). facultad(id), carrera(id) todos retornando json. show(id)
+    public function buscar(Request $request)
+    {
+        // Buscamos becas por nombre, facultad y carrera
+        $query = Beca::query();
+        //dd($query);
+        $nombre = $request->input('nombre');
+        $facultad = $request->input('facultad');
+        $carrera = $request->input('carrera');
+
+        if ($nombre) {
+            $query->where('titulo', 'like', '%'.$nombre.'%');
+        }
+
+
+        $query->when($facultad, function ($q) use ($facultad) {
+            $q->whereHas('facultades', function ($q) use ($facultad) {
+                $q->where('facultades.nombre','like', '%'.$facultad.'%');
+            });
+        });
+
+
+        $query->when($carrera, function ($q) use ($carrera) {
+            $q->whereHas('carreras', function ($q) use ($carrera) {
+                $q->where('carreras.nombre','like', '%'.$carrera.'%');
+            });
+        });
+
+        $becas = $query->get();
+
+
+        return response()->json($query->get());
+    }
+
+
     public function show($id)
     {
         // Devolvemos una beca específica por su ID en formato JSON

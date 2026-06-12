@@ -3,20 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//use Illuminate\Http\RedirectResponse;
 use App\Models\Facultad;
+use Illuminate\Support\Facades\Auth;
 
 class FacultadesController extends Controller
 {
     public function index(){
+        $this->authorize('view',Auth::user());
         $facultades = Facultad::paginate(6);
         return view('facultades.index', compact('facultades'));
     }
 
     public function create(){
+        $this->authorize('create',Auth::user());
         return view('facultades.create');
     }
 
     public function edit($id){
+        $this->authorize('update',Auth::user());
         $facultad = Facultad::findOrFail($id);
         return view('facultades.edit', compact('facultad'));
     }

@@ -21,7 +21,7 @@
         <button class="ev-alert-close" onclick="document.getElementById('alertOk').style.display='none'">✕</button>
       </div>
 
-      <form id="createForm" method="POST" action="{{ route('becas.store') }}" novalidate>
+      <form id="createForm" method="POST" action="{{ route('becas.store') }}">
         @csrf
         <div class="ev-form-layout">
 
@@ -37,7 +37,7 @@
             </div>
             <div class="ev-field">
               <label class="ev-label">Categoria <span class="ev-req">*</span></label>
-              <select class="ev-select" name="categoria" id="f-categoria" >
+              <select class="ev-select" name="categoria_id" id="f-categoria" >
                 <option value="" noselect>— Seleccionar —</option>
                 @foreach($categorias as $categoria)
                   <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
@@ -47,7 +47,7 @@
             </div>
             <div class="ev-field">
               <label class="ev-label">Correo Contacto <span class="ev-req">*</span></label>
-              <input class="ev-input" name="contacto" id="f-email" type="email" placeholder="usuario@institucion.edu" />
+              <input class="ev-input" name="correo_contacto" id="f-email" type="email" placeholder="usuario@institucion.edu" />
               <span class="ev-field-err" id="e-email"></span>
             </div>
             <div class="ev-field">
@@ -60,7 +60,7 @@
             </div>
              <div class="ev-field">
               <label class="ev-label">Resolucion <span class="ev-req">*</span></label>
-              <input class="ev-input" name="resolucion" id="f-nombre" type="text" placeholder="Ingrese link resolucion" />
+              <input class="ev-input" name="link_resolucion" id="f-nombre" type="text" placeholder="Ingrese link resolucion" />
               <span class="ev-field-err" id="e-resolucion"></span>
             </div>
             <div class="ev-field">
@@ -74,6 +74,30 @@
               <label class="ev-label">Descripcion</label>
               <textarea class="ev-textarea" name="descripcion" rows="3" id="f-desc" placeholder="Ingrese una descripcion"> </textarea>
               <span class="ev-field-err" id="e-desc"></span>
+            </div>
+
+            <div>
+              <div class="ev-section">Carreras</div>
+              <div class="ev-checkbox-group">
+                @foreach($carreras as $carrera)
+                  <label class="ev-checkbox-label">
+                    <input type="checkbox" name="carreras[]" value="{{ $carrera->id }}" />
+                    {{ $carrera->nombre }}
+                  </label>
+                @endforeach
+              </div>
+            </div>
+            <br>
+            <div>
+              <div class="ev-section">Facultades</div>
+              <div class="ev-checkbox-group">
+                @foreach($facultades as $facultad)
+                  <label class="ev-checkbox-label">
+                    <input type="checkbox" name="facultades[]" value="{{ $facultad->id }}" />
+                    {{ $facultad->nombre }}
+                  </label>
+                @endforeach
+              </div>
             </div>
 
 

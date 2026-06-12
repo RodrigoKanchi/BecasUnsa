@@ -33,9 +33,12 @@
                Preferencias
             </li>
             <div class="adm-user-dropdown-divider"></div>
-            <li class="adm-user-dropdown-item danger dropdown-item" >
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+            <button type="submit" class="adm-user-dropdown-item danger dropdown-item" >
                Cerrar Sesión
-            </li>
+            </button>
+            </form>
           </ul>
         </div>
       </div>

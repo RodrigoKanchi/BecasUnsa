@@ -9,12 +9,13 @@ use App\Http\Controllers\BecasController;
 use App\Http\Controllers\FacultadesController;
 use App\Http\Controllers\CarrerasController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\BecaController;
 
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
-
+Route::get('/buscarBeca', [BecaController::class, 'buscar'])->name('becas.buscar');
 
 Route::middleware('auth')->group(function () {
     
@@ -92,6 +93,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/roles/{id}/edit', [RolesController::class, 'edit'])->name('roles.edit');
     Route::put('/roles/{id}', [RolesController::class, 'update'])->name('roles.update');
     Route::delete('/roles/{id}', [RolesController::class, 'destroy'])->name('roles.destroy');
+
+  
     
 });
 

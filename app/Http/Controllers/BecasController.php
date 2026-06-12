@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Beca;
 use App\Models\Categoria;
+use App\Models\Carrera;
+use App\Models\Facultad;
+use App\Models\BecaCarrera;
+use App\Models\BecaFacultad;
 
 
 //BACKEND
@@ -18,7 +22,9 @@ class BecasController extends Controller
 
     public function create(){
         $categorias = Categoria::all();
-        return view('becas.create', compact('categorias'));
+        $carreras = Carrera::all();
+        $facultades = Facultad::all();
+        return view('becas.create', compact('categorias', 'carreras', 'facultades'));
     }
 
     public function edit($id){
@@ -27,19 +33,33 @@ class BecasController extends Controller
     }
 
     public function store(Request $request){
+        //dd($request);
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'string',
-            'categoria' => 'required|exists:categoria,id',
-            'contacto' => 'required',
+            'categoria_id' => 'required|exists:categorias,id',
+            'correo_contacto' => 'required',
             'fecha_inscripcion' => 'required|date',
             'fecha_limite' => 'required|date|after_or_equal:fecha_inicio',
             'activo' => 'required|boolean',
-            'resolucion' => 'required'
+            'link_resolucion' => 'required'
         ]);
-
+        //dd($request, $request->input('categoria_id'));
+        $carreras = Carrera::whereIn('id', $request->input('carreras'))->get();
+        $facultades = Facultad::whereIn('id', $request->input('facultades'))->get();
         $beca = Beca::create($request->all());
-
+        foreach($carreras as $carrera){
+            BecaCarrera::create([
+                'beca_id' => $beca->id,
+                'carrera_id' => $carrera->id
+            ]);
+        }
+        foreach($facultades as $facultad){
+            BecaFacultad::create([
+                'beca_id' => $beca->id,
+                'facultad_id' => $facultad->id
+            ]);
+        }
         return redirect()->route('becas.index')->with('success', 'Beca creada exitosamente.');
     }
 
@@ -47,7 +67,7 @@ class BecasController extends Controller
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'string',
-            'categoria' => 'required|exists:categoria,id',
+            'categoria' => 'required|exists:categorias,id',
             'contacto' => 'required',
             'fecha_inscripcion' => 'required|date',
             'fecha_limite' => 'required|date|after_or_equal:fecha_inicio',
@@ -57,6 +77,21 @@ class BecasController extends Controller
 
         $beca = Beca::findOrFail($id);
         $beca->update($request->all());
+        $carreras = Carrera::whereIn('id', $request->input('carreras'))->get();
+        $facultades = Facultad::whereIn('id', $request->input('facultades'))->get();
+        //Modificar para update
+        foreach($carreras as $carrera){
+            BecaCarrera::create([
+                'beca_id' => $beca->id,
+                'carrera_id' => $carrera->id
+            ]);
+        }
+        foreach($facultades as $facultad){
+            BecaFacultad::create([
+                'beca_id' => $beca->id,
+                'facultad_id' => $facultad->id
+            ]);
+        }
 
         return redirect()->route('becas.index')->with('success', 'Beca actualizada exitosamente.');
     }
