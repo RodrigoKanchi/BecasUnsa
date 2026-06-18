@@ -7,6 +7,7 @@ use App\Http\Controllers\BecaController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/buscarBeca', [BecaController::class, 'buscar'])->name('becas.buscar');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {

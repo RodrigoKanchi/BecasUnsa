@@ -9,7 +9,7 @@ use App\Models\Facultad;
 class CarrerasController extends Controller
 {
     public function index(){
-        $carreras = Carrera::paginate(10);
+        $carreras = Carrera::paginate(6);
         return view('carreras.index', compact('carreras'));
     }
 

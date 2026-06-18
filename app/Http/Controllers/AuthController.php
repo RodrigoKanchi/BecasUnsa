@@ -18,7 +18,7 @@ class AuthController extends Controller
             'name'     => 'required|string|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'role_id'  => 'required|exists:roles,id', // Debe existir en la tabla roles
+            //'role_id'  => 'required|exists:roles,id', // Debe existir en la tabla roles
         ]);
 
         if ($validator->fails()) {
@@ -30,7 +30,7 @@ class AuthController extends Controller
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => Hash::make($request->password), // Encriptar contraseña
-            'role_id'   => $request->role_id,
+            //'role_id'   => $request->role_id,
             'fcm_token' => $request->fcm_token, // Opcional por ahora
         ]);
 
@@ -48,6 +48,8 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        //$output = new \Symfony\Component\Console\Output\ConsoleOutput();
+        //$output->writeln("<info>$request</info>");
         // 1. Validar que vengan los datos necesarios
         $validator = Validator::make($request->all(), [
             'email'    => 'required|email',
@@ -60,6 +62,8 @@ class AuthController extends Controller
 
         // 2. Buscar al usuario por email (según ESQUEMA.PNG)
         $user = User::where('email', $request->email)->first();
+        //$role = $user->roles()->first();
+        //$roleId = $role ? $role->id : null;
 
         // 3. Verificar si existe y si la contraseña coincide
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -75,9 +79,16 @@ class AuthController extends Controller
 
         // 5. Generar nuevo Token para la sesión móvil
         $token = $user->createToken('auth_token')->plainTextToken;
+        //$output->writeln("<info>$token</info>");
 
         return response()->json([
-            'data'         => $user,
+            'data'         => [
+                //'id'       => $user->id,
+                'name'   => $user->name,
+                'email'    => $user->email,
+                //'role_id'  => $roleId,
+                'fcm_token' => $user->fcm_token,
+            ],
             'access_token' => $token,
             'token_type'   => 'Bearer',
         ]);
@@ -94,4 +105,16 @@ class AuthController extends Controller
             'message' => 'Sesión cerrada exitosamente.'
         ]);
     }
+    public function marcarFavorito(Request $request){
+
+    }
+
+    public function desmarcarFavorito(Request $request){
+
+    }
+
+    public function verFavoritos(Request $request){
+
+    }
+    
 }

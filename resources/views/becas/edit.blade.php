@@ -2,78 +2,125 @@
 @section('content')
 
 <main class="adm-content">
-      <div class="ev-header">
+    <div class="ev-header">
         <div class="ev-header-left">
-          <span class="ev-back" href="{{ route('becas.index') }}">‹ Volver a Becas</span>
-          <div>
-            <div class="ev-title-row">
-              <span class="ev-entity-icon">👤</span>
-              <h1 class="ev-page-title">Editar Beca</h1>
-              <span class="ev-dirty" id="dirtyBadge" style="display:none">Sin guardar</span>
+            <span class="ev-back" href="{{ route('becas.index') }}">‹ Volver a Becas</span>
+            <div>
+                <div class="ev-title-row">
+                    <span class="ev-entity-icon">👤</span>
+                    <h1 class="ev-page-title">Editar Beca</h1>
+                    <span class="ev-dirty" id="dirtyBadge" style="display:none">Sin guardar</span>
+                </div>
+                <p class="ev-subtitle">Modifique los campos y guarde para actualizar el registro.</p>
             </div>
-            <p class="ev-subtitle">Modifique los campos y guarde para actualizar el registro.</p>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <div class="ev-alert success" id="alertOk" style="display:none">
-        ✅ Beca actualizado exitosamente.
-        <button class="ev-alert-close" onclick="document.getElementById('alertOk').style.display='none'">✕</button>
-      </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
-      <form id="editForm" method="POST" action="{{route('becas.update' , ['id' => $beca->id ])}} " >
+    <form id="editForm" method="POST" action="{{route('becas.update' , ['id' => $beca->id ])}} " >
         @csrf
         @method('PUT')
         <div class="ev-form-layout">
-          <div class="ev-form-main">
+            <div class="ev-form-main">
+                <div class="ev-section">Información Becas</div>
+                <div class="ev-field">
+                    <label class="ev-label">Titulo <span class="ev-req">*</span></label>
+                    <input class="ev-input" name="titulo" id="f-titulo" type="text" value="{{ $beca->titulo }}" />
+                    <span class="ev-field-err" id="e-nombre"></span>
+                </div>
+                <div class="ev-field">
+                  <label class="ev-label">Categoria <span class="ev-req">*</span></label>
+                  <select class="ev-select" name="categoria_id" id="f-categoria" >
+                    <option value="" noselect>— Seleccionar —</option>
+                    @foreach($categorias as $categoria)
+                      @if($beca->categoria_id == $categoria->id)
+                      <option value="{{ $categoria->id }}" selected>{{ $categoria->nombre }}</option>
+                      @else
+                      <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                      @endif
+                    @endforeach
+                  </select>
+                  <span class="ev-field-err" id="e-rol"></span>
+                </div>
+                <div class="ev-field">
+                    <label class="ev-label">Correo Contacto <span class="ev-req">*</span></label>
+                    <input class="ev-input" name="correo_contacto" id="f-email" type="email" value="{{ $beca->correo_contacto }}" />
+                    <span class="ev-field-err" id="e-email"></span>
+                </div>
+                <div class="ev-field">
+                    <label class="ev-label">Fecha Inscripcion <span class="ev-req">*</span></label>
+                    <input type="date" class="ev-input" name="fecha_inscripcion" id="f-fecha" value="{{ $beca->fecha_inscripcion->toDateString() }}">
+                </div>
+                <div class="ev-field">
+                    <label class="ev-label">Fecha Limite <span class="ev-req">*</span></label>
+                    <input type="date" class="ev-input" name="fecha_limite" id="f-fecha" value="{{ $beca->fecha_limite->toDateString() }}">
+                </div>
+                <div class="ev-field">
+                    <label class="ev-label">Resolucion <span class="ev-req">*</span></label>
+                    <input class="ev-input" name="link_resolucion" id="f-nombre" type="text" placeholder="Ingrese link resolucion" value="{{ $beca->link_resolucion }}" />
+                    <span class="ev-field-err" id="e-resolucion"></span>
+                </div>
+                <div class="ev-field">
+                    <label class="ev-label">Estado</label>
+                    <select class="ev-select" name="activo" id="f-estado">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+                <div class="ev-field">
+                    <label class="ev-label">Descripcion</label>
+                    <textarea class="ev-textarea" name="descripcion" rows="3" id="f-desc" placeholder="Ingrese una descripcion" value="{{ $beca->descripcion }}"> </textarea>
+                    <span class="ev-field-err" id="e-desc"></span>
+                </div>
+                <div class="ev-section">Carreras</div>
+                <div class="ev-checkbox-group">
+                    @foreach($carreras as $carrera)
+                        @if(in_array($carrera->id,$beca_carreras))
+                        <label class="ev-checkbox-label">
+                            <input type="checkbox" name="carreras[]" value="{{ $carrera->id }}" checked/>
+                            {{ $carrera->nombre }}
+                        </label>
+                        @else
+                        <label class="ev-checkbox-label">
+                            <input type="checkbox" name="carreras[]" value="{{ $carrera->id }}" />
+                            {{ $carrera->nombre }}
+                        </label>
+                        @endif
+                    @endforeach
+                </div>
+                <div class="ev-section">Facultades</div>
+                <div class="ev-checkbox-group">
+                    @foreach($facultades as $facultad)
+                        @if(in_array($facultad->id,$beca_facultades))
+                        <label class="ev-checkbox-label">
+                            <input type="checkbox" name="facultades[]" value="{{ $facultad->id }}" checked/>
+                            {{ $facultad->nombre }}
+                        </label>
+                        @else
+                        <label class="ev-checkbox-label">
+                            <input type="checkbox" name="facultades[]" value="{{ $facultad->id }}" />
+                            {{ $facultad->nombre }}
+                        </label>
+                        @endif
+                    @endforeach
+                </div>
 
-            <div class="ev-section">Información Becas</div>
-
-            <div class="ev-field">
-              <label class="ev-label">Titulo <span class="ev-req">*</span></label>
-              <input class="ev-input" name="titulo" id="f-titulo" type="text" value="{{ $beca->titulo }}" />
-              <span class="ev-field-err" id="e-nombre"></span>
             </div>
-
-            <div class="ev-field">
-              <label class="ev-label">Correo Contacto <span class="ev-req">*</span></label>
-              <input class="ev-input" name="contacto" id="f-email" type="email" value="{{ $beca->correo_contacto }}" />
-              <span class="ev-field-err" id="e-email"></span>
-            </div>
-            <div class="ev-field">
-              <label class="ev-label">Fecha Inscripcion <span class="ev-req">*</span></label>
-              <input type="date" class="ev-input" name="fecha_inscripcion" id="f-fecha" value="{{ $beca->fecha_inscripcion }}">
-            </div>
-            <div class="ev-field">
-              <label class="ev-label">Fecha Limite <span class="ev-req">*</span></label>
-              <input type="date" class="ev-input" name="fecha_limite" id="f-fecha" value="{{ $beca->fecha_limite }}">
-            </div>
-             <div class="ev-field">
-              <label class="ev-label">Resolucion <span class="ev-req">*</span></label>
-              <input class="ev-input" name="resolucion" id="f-nombre" type="text" placeholder="Ingrese link resolucion" value="{{ $beca->link_resolucion }}" />
-              <span class="ev-field-err" id="e-resolucion"></span>
-            </div>
-            <div class="ev-field">
-              <label class="ev-label">Estado</label>
-              <select class="ev-select" name="activo" id="f-estado">
-                <option value="1">Activo</option>
-                <option value="0">Inactivo</option>
-              </select>
-            </div>
-            <div class="ev-field">
-              <label class="ev-label">Descripcion</label>
-              <textarea class="ev-textarea" name="descripcion" rows="3" id="f-desc" placeholder="Ingrese una descripcion" value="{{ $beca->descripcion }}"> </textarea>
-              <span class="ev-field-err" id="e-desc"></span>
-            </div>
-
-          </div>
-
         </div>
 
         <div class="ev-footer">
-          <a type="button" class="adm-btn ghost" href="{{ route('becas.index') }}">Cancelar</a>
-          <button type="submit" class="adm-btn primary" id="submitBtn">Guardar cambios</button>
+            <a type="button" class="adm-btn ghost" href="{{ route('becas.index') }}">Cancelar</a>
+            <button type="submit" class="adm-btn primary" id="submitBtn">Guardar cambios</button>
         </div>
-      </form>
-    </main>
+    </form>
+</main>
 @endsection

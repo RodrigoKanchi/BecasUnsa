@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/buscarBeca', [BecaController::class, 'buscar'])->name('becas.buscar');
+//Route::post('/auth/login', [AuthController::class, 'login'])->name('becas.login');
+
 
 Route::middleware('auth')->group(function () {
     

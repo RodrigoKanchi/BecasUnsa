@@ -15,6 +15,16 @@
         </div>
       </div>
 
+      @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+      @endif
+
       <!-- Alert -->
       <div class="ev-alert success" id="alertOk" style="display:none">
         ✅ Beca creado exitosamente.

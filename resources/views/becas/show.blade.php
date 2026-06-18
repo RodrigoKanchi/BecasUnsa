@@ -30,6 +30,11 @@
                         <span class="adm-chip">{{ $carrera->nombre }}</span>
                     @endforeach
                 @endif
+                @if($beca->facultades->isNotEmpty())
+                  @foreach($beca->facultades as $facultad)
+                    <span class='adm-status'>{{ $facultad->nombre }}</span>
+                  @endforeach
+                @endif
                 <span class="adm-status active">{{ $beca->activo ? 'Activo' : 'Inactivo' }}</span>
               </div>
             </div>
@@ -45,11 +50,11 @@
               </div>
               <div class="ev-det-field">
                 <span class="ev-det-label">Fecha Inscripcion</span>
-                <span class="ev-det-val">{{ $beca->fecha_inscripcion }}</span>
+                <span class="ev-det-val">{{ $beca->fecha_inscripcion->format('d/m/Y') }}</span>
               </div>
               <div class="ev-det-field">
                 <span class="ev-det-label">Fecha Limite</span>
-                <span class="ev-det-val">{{ $beca->fecha_limite }}</span>
+                <span class="ev-det-val">{{ $beca->fecha_limite->format('d/m/Y') }}</span>
               </div>
                <div class="ev-det-field">
                 <span class="ev-det-label">Descripcion</span>

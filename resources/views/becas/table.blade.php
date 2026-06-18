@@ -36,8 +36,8 @@
                   </div>
                 </td>
                 <td class="adm-table-email">{{ $beca->correo_contacto }}</td>
-                <td><span class="adm-chip"> {{ $beca->fecha_inscripcion }}  </span></td>
-                <td><span class="adm-chip"> {{ $beca->fecha_limite }}  </span></td>
+                <td><span class="adm-chip"> {{ $beca->fecha_inscripcion->format('d/m/Y') }}  </span></td>
+                <td><span class="adm-chip"> {{ $beca->fecha_limite->format('d/m/Y') }}  </span></td>
                 <td><span class="adm-status">{{ $beca->activo ? 'Si' : 'No' }}</span></td>
                 <td>
                   <div class="adm-actions">
