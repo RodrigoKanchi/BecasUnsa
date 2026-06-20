@@ -35,7 +35,7 @@ class AuthController extends Controller
         ]);
 
         // 3. Generar el Token de acceso para Flutter
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('auth_token',['*'], now()->addHours(2))->plainTextToken;
 
         return response()->json([
             'data'         => $user,
@@ -78,13 +78,13 @@ class AuthController extends Controller
         }
 
         // 5. Generar nuevo Token para la sesión móvil
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('auth_token',['*'], now()->addHours(2))->plainTextToken;
         //$output->writeln("<info>$token</info>");
 
         return response()->json([
             'data'         => [
                 //'id'       => $user->id,
-                'name'   => $user->name,
+                'nombre'   => $user->name,
                 'email'    => $user->email,
                 //'role_id'  => $roleId,
                 'fcm_token' => $user->fcm_token,

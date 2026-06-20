@@ -16,11 +16,13 @@ class BecasController extends Controller
 {
     public function index()
     {
+        $this->authorize('view',Beca::class);
         $becas = Beca::paginate(6);
         return view('becas.index',compact('becas'));
     }
 
     public function create(){
+        $this->authorize('create',Beca::class);
         $categorias = Categoria::all();
         $carreras = Carrera::all();
         $facultades = Facultad::all();
@@ -28,6 +30,7 @@ class BecasController extends Controller
     }
 
     public function edit($id){
+        $this->authorize('update',Beca::class);
         $categorias = Categoria::all();
         $carreras = Carrera::all();
         $facultades = Facultad::all();
@@ -38,6 +41,7 @@ class BecasController extends Controller
     }
 
     public function store(Request $request){
+        $this->authorize('update',Beca::class);
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'nullable|string',
@@ -78,6 +82,7 @@ class BecasController extends Controller
 
     public function update(Request $request, $id){
         //dd($request);
+        $this->authorize('update',Beca::class);
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'nullable|string',
@@ -105,12 +110,14 @@ class BecasController extends Controller
     }
 
     public function show($id){
+        $this->authorize('view',Beca::class);
         $beca = Beca::findOrFail($id);
         //dd($carreras);
         return view('becas.show', compact('beca'));
     }
 
     public function desactivate($id){
+        $this->authorize('delete',Beca::class);
         $beca = Beca::findOrFail($id);
         $beca->activo = false;
         $beca->save();
@@ -119,6 +126,7 @@ class BecasController extends Controller
     }
 
     public function destroy($id){
+        $this->authorize('delete',Beca::class);
         $beca = Beca::findOrFail($id);
         $beca->delete();
 

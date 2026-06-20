@@ -5,6 +5,16 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\Facultad;
 use App\Policies\FacultadesPolicy;
+use App\Models\Beca;
+use App\Policies\BecasPolicy;
+use App\Models\Carrera;
+use App\Policies\CarrerasPolicy;
+use App\Models\User;
+use App\Policies\UserPolicy;
+use Spatie\Permission\Models\Permission;
+use App\Policies\PermisosPolicy;
+use Spatie\Permission\Models\Roles;
+use App\Policies\RolesPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,6 +23,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Facultad::class => FacultadesPolicy::class,
+        Beca::class => BecasPolicy::class,
+        Carrera::class => CarrerasPolicy::class,
+        User::class => UserPolicy::class,
+        Permission::class => PermisosPolicy::class,
+        Roles::class => RolesPolicy::class,
     ];
 
 

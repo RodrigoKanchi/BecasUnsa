@@ -18,11 +18,13 @@ class BecaController extends Controller
     // Funciones para buscar(nombre, facultad?, carrera?). facultad(id), carrera(id) todos retornando json. show(id)
     public function buscar(Request $request)
     {
-        
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $output->writeln("<info>$request</info>");
         // Buscamos becas por nombre, facultad y carrera
         $query = Beca::query();
         //dd($query);
-        $nombre = $request->input('nombre');
+
+        $nombre = $request->input('titulo');
         $facultad = $request->input('facultad');
         $carrera = $request->input('carrera');
 
