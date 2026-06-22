@@ -13,7 +13,7 @@ use App\Models\User;
 use App\Policies\UserPolicy;
 use Spatie\Permission\Models\Permission;
 use App\Policies\PermisosPolicy;
-use Spatie\Permission\Models\Roles;
+use Spatie\Permission\Models\Role;
 use App\Policies\RolesPolicy;
 
 class AuthServiceProvider extends ServiceProvider
@@ -27,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         Carrera::class => CarrerasPolicy::class,
         User::class => UserPolicy::class,
         Permission::class => PermisosPolicy::class,
-        Roles::class => RolesPolicy::class,
+        Role::class => RolesPolicy::class,
     ];
 
 

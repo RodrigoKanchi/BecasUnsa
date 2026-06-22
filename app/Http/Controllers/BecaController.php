@@ -53,7 +53,7 @@ class BecaController extends Controller
         foreach($becas as $beca){
             $beca['esFavorito'] = Favorito::where('user_id',$request->input('id'))->where('beca_id',$beca['id'])->exists();
         }
-        return response()->json($query->get());
+        return response()->json($becas);
     }
 
 

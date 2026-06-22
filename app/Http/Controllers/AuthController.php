@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Favorito;
+use App\Models\Beca;
 
 class AuthController extends Controller
 {
@@ -33,6 +35,7 @@ class AuthController extends Controller
             //'role_id'   => $request->role_id,
             'fcm_token' => $request->fcm_token, // Opcional por ahora
         ]);
+        $user->assignRole('Usuario');
 
         // 3. Generar el Token de acceso para Flutter
         $token = $user->createToken('auth_token',['*'], now()->addHours(2))->plainTextToken;
@@ -146,7 +149,10 @@ class AuthController extends Controller
             'user_id' => $request->input('id'),
             'beca_id' => $request->input('beca_id')
         ];
-        Favorito::create($data);
+        $fav = Favorito::where($data)->first();
+        if($fav == null){
+            Favorito::create($data);
+        }
 
         return response()->noContent();
     }
@@ -162,7 +168,10 @@ class AuthController extends Controller
             'user_id' => $request->input('id'),
             'beca_id' => $request->input('beca_id')
         ];
-        Favorito::delete($data);
+        $fav = Favorito::where($data)->first();
+        if($fav != null){
+            Favorito::destroy($fav->id);
+        }
 
         return response()->noContent();
     }
@@ -171,11 +180,11 @@ class AuthController extends Controller
         $request->validate([
             'id' => 'required',
         ]);
-
-        $favoritos = Favorito::where('user_id', '5')->pluck('beca_id'); 
-
+        $favoritos = Favorito::where('user_id', $request->input('id'))->pluck('beca_id')->toArray(); 
         $becas = Beca::whereIn('id',$favoritos)->get();  
-
+        foreach($becas as $beca){
+            $beca['esFavorito'] = true;
+        }
         return response()->json($becas);
     }
     
