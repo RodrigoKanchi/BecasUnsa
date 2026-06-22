@@ -44,6 +44,37 @@ class AuthController extends Controller
         ], 201);
     }
 
+    public function update(Request $request){
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $output->writeln("<info>$request</info>");
+        $request->validate([
+            'id' => 'required',
+            'nombre' => 'required',
+            'password' => 'nullable',
+            'email' => 'required'
+        ]);
+
+
+        $user = User::find($request->input('id'));
+        
+        if($request->input('password') == ''){
+            $data = [
+            'name' => $request->input('nombre'),
+            'email' => $request->input('email')
+            ];
+        }else{
+            $data = [
+            'name' => $request->input('nombre'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password'))
+            ];
+        }
+        $user->update($data);
+
+        return response()->noContent();
+
+    }
+
     /* Inicio de sesión */
 
     public function login(Request $request)
@@ -83,7 +114,7 @@ class AuthController extends Controller
 
         return response()->json([
             'data'         => [
-                //'id'       => $user->id,
+                'id'       => $user->id,
                 'nombre'   => $user->name,
                 'email'    => $user->email,
                 //'role_id'  => $roleId,
@@ -105,16 +136,47 @@ class AuthController extends Controller
             'message' => 'Sesión cerrada exitosamente.'
         ]);
     }
-    public function marcarFavorito(Request $request){
 
+    public function marcarFavorito(Request $request){
+        $request->validate([
+            'id' => 'required',
+            'beca_id' => 'required'
+        ]);
+        $data = [
+            'user_id' => $request->input('id'),
+            'beca_id' => $request->input('beca_id')
+        ];
+        Favorito::create($data);
+
+        return response()->noContent();
     }
+        
+    
 
     public function desmarcarFavorito(Request $request){
+        $request->validate([
+            'id' => 'required',
+            'beca_id' => 'required'
+        ]);
+        $data = [
+            'user_id' => $request->input('id'),
+            'beca_id' => $request->input('beca_id')
+        ];
+        Favorito::delete($data);
 
+        return response()->noContent();
     }
 
     public function verFavoritos(Request $request){
+        $request->validate([
+            'id' => 'required',
+        ]);
 
+        $favoritos = Favorito::where('user_id', '5')->pluck('beca_id'); 
+
+        $becas = Beca::whereIn('id',$favoritos)->get();  
+
+        return response()->json($becas);
     }
     
 }

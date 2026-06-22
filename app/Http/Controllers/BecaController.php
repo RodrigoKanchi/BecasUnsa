@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Beca;
+use App\Models\Favorito;
 
 
 //CONEXION APLICACION MOVIL
@@ -49,7 +50,9 @@ class BecaController extends Controller
         });
 
         $becas = $query->get();
-
+        foreach($becas as $beca){
+            $beca['esFavorito'] = Favorito::where('user_id',$request->input('id'))->where('beca_id',$beca['id'])->exists();
+        }
         return response()->json($query->get());
     }
 
@@ -69,7 +72,7 @@ class BecaController extends Controller
             'link_resolucion' => $beca->link_resolucion,
             'correo_contacto' => $beca->correo_contacto,
             'carreras' => $beca->carreras()->pluck('nombre'),
-            'facultades' => $beca->facultades()->pluck('nombre')
+            'facultades' => $beca->facultades()->pluck('nombre'),
         ];
     
         if ($beca) {
