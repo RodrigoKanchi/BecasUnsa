@@ -8,7 +8,7 @@ Asegúrate de tener instalados los siguientes programas en tu entorno local:
 
 - **PHP**: Versión 8.x o superior
 - **Composer**: Gestor de dependencias de PHP
-- **Node.js**: Versión 20.x o superior (y NPM)
+- **Node.js**: Versión 20.x o superior (y PNPM)
 - **MySQL / MariaDB**: Gestor de bases de datos
 
 ## ⚙️ Instrucciones de Instalación
@@ -62,8 +62,8 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 
 Inicia el servidor local de Laravel y el compilador de assets en terminales separadas:
 
-- **Servidor PHP**: `php artisan serve`
-- **Compilador Vite**: `npm run dev`
+- **Servidor PHP**: `php artisan serve --host=0.0.0.0 --port=8000`
+- **Compilador Vite**: `pnpm dev`
 
 Accede a tu proyecto en: `http://127.0.0.1:8000`
 
