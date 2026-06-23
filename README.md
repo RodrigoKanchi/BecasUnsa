@@ -48,9 +48,14 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
    php artisan migrate --seed
    ```
 
-7. **Compila los assets (CSS/JS)**
+7. **Instalar pnpm**
    ```bash
-   npm run dev
+   npm install -g pnpm@latest-11
+   ```
+
+8. **Compila los assets (CSS/JS)**
+   ```bash
+   pnpm dev
    ```
 
 ## 🚀 Despliegue Local

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SistemaGov — Plataforma Institucional</title>
+  <title>Becas Unsa — Plataforma Institucional</title>
   <script src="https://kit.fontawesome.com/0763a21c1e.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="admin.css" />
 </head>
@@ -15,9 +15,9 @@
   <aside class="adm-sidebar" id="sidebar">
 
     <div class="adm-sidebar-logo">
-      <div class="adm-logo-icon">I</div>
+      <div class="adm-logo-icon"></div>
       <div class="adm-logo-text">
-        <span class="adm-logo-title">SistemaGov</span>
+        <span class="adm-logo-title">Becas Unsa</span>
         <span class="adm-logo-sub">Plataforma Institucional</span>
       </div>
     </div>
