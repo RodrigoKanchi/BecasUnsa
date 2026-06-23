@@ -1,58 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Backend Becas Unsa
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este sistema de Laravel funciona como API para <a href="https://github.com/Gabo99x/app-becas-unsa-frontend">Aplicacion Movil Becas Unsa<a>
 
-## About Laravel
+## 🛠️ Requisitos del Sistema
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Asegúrate de tener instalados los siguientes programas en tu entorno local:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **PHP**: Versión 8.x o superior
+- **Composer**: Gestor de dependencias de PHP
+- **Node.js**: Versión 20.x o superior (y NPM)
+- **MySQL / MariaDB**: Gestor de bases de datos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ⚙️ Instrucciones de Instalación
 
-## Learning Laravel
+Sigue estos pasos para configurar el proyecto en tu entorno local:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clona el repositorio**
+   ```bash
+   git clone https://github.com/RodrigoKanchi/BecasUnsa.git
+   ```
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Accede a la carpeta del proyecto**
+   ```bash
+   cd tu-repositorio
+   ```
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+3. **Instala las dependencias de PHP**
+   ```bash
+   composer install
+   ```
 
-## Agentic Development
+4. **Instala las dependencias de JavaScript**
+   ```bash
+   npm install
+   ```
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+5. **Configura el archivo de entorno**
+   Copia el archivo de ejemplo y genera la clave de la aplicación:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-```bash
-composer require laravel/boost --dev
+6. **Configura tu base de datos**
+   Abre el archivo `.env` y actualiza las credenciales de tu base de datos (DB_DATABASE, DB_USERNAME, DB_PASSWORD). Luego, ejecuta las migraciones:
+   ```bash
+   php artisan migrate --seed
+   ```
 
-php artisan boost:install
-```
+7. **Compila los assets (CSS/JS)**
+   ```bash
+   npm run dev
+   ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## 🚀 Despliegue Local
 
-## Contributing
+Inicia el servidor local de Laravel y el compilador de assets en terminales separadas:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Servidor PHP**: `php artisan serve`
+- **Compilador Vite**: `npm run dev`
 
-## Code of Conduct
+Accede a tu proyecto en: `http://127.0.0.1:8000`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🤝 Contribución
 
-## Security Vulnerabilities
+Si deseas contribuir a este proyecto:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Haz un Fork del repositorio.
+2. Crea una rama para tu nueva función (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commit (`git commit -m 'Agrega nueva funcionalidad'`).
+4. Sube los cambios (`git push origin feature/nueva-funcionalidad`).
+5. Abre un Pull Request.
 
-## License
+## 📄 Licencia
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
